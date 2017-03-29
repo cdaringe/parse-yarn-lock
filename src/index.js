@@ -20,9 +20,13 @@ module.exports = {
     })
   },
   getGlobalYarnParser: function(yarnPath, cb) {
+    console.log('yarnPath', yarnPath);
     // <yarn>/bin/yarn ==> (src) <yarn>/src/lockfile
     //                     (compiled) <yar>lib/node_modules/yarn/lib/lockfile/parse.js
-    var parser = require(path.resolve(yarnPath, '../../lib/lockfile/parse.js'))
+    var parserPath = path.resolve(yarnPath, '../../lib/lockfile/parse.js')
+    console.log('parserPath', parserPath)
+    var parser = require(parserPath)
+    console.log('parser', parser);
     return cb(null, parser.default)
   }
 }
